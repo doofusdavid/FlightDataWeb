@@ -58,6 +58,10 @@ $app->get('/intro', function() use ($app){
     $app->render('intro.twig');
 });
 
+$app->get('/flight_delay_per_day_of_month', function() use ($app){
+    $app->render('flight_delay_per_day_of_month.twig');
+});
+
 /******************************************* RUN THE APP *******************************************************/
 
 $app->run();
