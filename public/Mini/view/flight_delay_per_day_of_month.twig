@@ -11,7 +11,11 @@ var dataLabels = [];
 var dataValues = [];
 var dataColors = [];
 $.getJSON("/data/flight_delay_per_day_of_month.json", function(json) {
-    console.log(json[0]._1); // this will show the info it in firebug console
+
+    json.sort(function(a,b){
+        return a._1 - b._1;
+    });
+    
     for(var i=0; i < json.length; i++)
     {
         dataLabels.push(json[i]._1);

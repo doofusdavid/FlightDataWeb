@@ -11,7 +11,13 @@ var dataLabels = [];
 var dataValues = [];
 var dataColors = [];
 $.getJSON("/data/flight_delay_per_month.json", function(json) {
-    console.log(json[0]._1); // this will show the info it in firebug console
+
+    var allMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    json.sort(function(a,b) {
+        return allMonths.indexOf(a._1) - allMonths.indexOf(b._1);
+    });
+
     for(var i=0; i < json.length; i++)
     {
         dataLabels.push(json[i]._1);

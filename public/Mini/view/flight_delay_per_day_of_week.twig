@@ -11,14 +11,20 @@ var dataLabels = [];
 var dataValues = [];
 var dataColors = [];
 $.getJSON("/data/flight_delay_per_day_of_week.json", function(json) {
-    console.log(json[0]._1); // this will show the info it in firebug console
+
+    var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    json.sort(function(a,b) {
+        return daysOfWeek.indexOf(a._1) - daysOfWeek.indexOf(b._1);
+    });
+
     for(var i=0; i < json.length; i++)
     {
         dataLabels.push(json[i]._1);
         dataValues.push(json[i]._2);
         dataColors.push(getRandColor());
     }
-    
+
     var chartOptions = {
         // Boolean - whether or not the chart should be responsive and resize when the browser does.
         responsive: true,
