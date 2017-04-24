@@ -34,9 +34,14 @@ $.getJSON("/data/flight_delay_per_day_of_month.json", function(json) {
             datasets: [{
                 label: '# late',
                 data: dataValues,
-                borderWidth: 6,
-                borderColor: 'rgba(255,0,0,1)',
-                fillColor:'rgba(255,0,0,.2)'
+                borderWidth: 4,
+                fill:true,
+                pointRadius: 4,
+                pointHoverRadius: 10,
+                pointBorderColor: 'rgba(0,0,0,1)',
+                pointBackgroundColor: 'rgba(0,0,0,.5)',
+                borderColor: 'rgba(183, 105, 92, 1)',
+                backgroundColor:'rgba(183, 105, 92, .2)',
             }],
         },
         options: {

@@ -28,11 +28,17 @@ $.getJSON("/data/flight_delay_per_number_of_flights.json", function(json) {
         data: {
             labels: dataLabels,
             datasets: [{
-                label: '% late',
+                label: '% of flights delayed',
                 data: dataValues,
-                borderWidth: 6,
-                borderColor: 'rgba(255,0,0,1)',
-                fillColor:'rgba(255,0,0,.2)'
+                borderWidth: 4,
+                fill:true,
+                pointRadius: 4,
+                pointHoverRadius: 10,
+                pointBorderColor: 'rgba(0,0,0,1)',
+                pointBackgroundColor: 'rgba(0,0,0,.5)',
+                borderColor: 'rgba(205, 187, 121, 1)',
+                backgroundColor:'rgba(205, 187, 121, .2)',
+
             }],
         },
         options: {
