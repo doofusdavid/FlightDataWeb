@@ -61,6 +61,18 @@ $app->get('/intro', function() use ($app){
 $app->get('/flight_delay_per_day_of_month', function() use ($app){
     $app->render('flight_delay_per_day_of_month.twig');
 });
+$app->get('/flight_delay_per_day_of_week', function() use ($app){
+    $app->render('flight_delay_per_day_of_week.twig');
+});
+$app->get('/flight_delay_per_month', function() use ($app){
+    $app->render('flight_delay_per_month.twig');
+});
+$app->get('/flight_delay_per_day_of_week', function() use ($app){
+    $app->render('flight_delay_per_day_of_week.twig');
+});
+$app->get('/flight_delay_per_number_of_flights', function() use ($app){
+    $app->render('flight_delay_per_number_of_flights.twig');
+});
 
 /******************************************* RUN THE APP *******************************************************/
 
