@@ -37,38 +37,15 @@ $app->configureMode('development', function () use ($app) {
         //$minifier->minify('js/application.minified.js');
     });
 
-    // Set the configs for development environment
-    $app->config(array(
-        'debug' => true,
-        'database' => array(
-            'db_host' => 'localhost',
-            'db_port' => '',
-            'db_name' => 'scotchbox',
-            'db_user' => 'root',
-            'db_pass' => 'root'
-        )
-    ));
+
 });
 
 // Configs for mode "production"
 $app->configureMode('production', function () use ($app) {
     // Set the configs for production environment
-    $app->config(array(
-        'debug' => false,
-        'database' => array(
-            'db_host' => '',
-            'db_port' => '',
-            'db_name' => '',
-            'db_user' => '',
-            'db_pass' => ''
-        )
-    ));
+
 });
 
-/******************************************** THE MODEL ********************************************************/
-
-// Initialize the model, pass the database configs. $model can now perform all methods from Mini\model\model.php
-$model = new \Mini\Model\Model($app->config('database'));
 
 /************************************ THE ROUTES / CONTROLLERS *************************************************/
 
