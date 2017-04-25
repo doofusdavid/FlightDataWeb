@@ -73,6 +73,12 @@ $app->get('/flight_delay_per_day_of_week', function() use ($app){
 $app->get('/flight_delay_per_number_of_flights', function() use ($app){
     $app->render('flight_delay_per_number_of_flights.twig');
 });
+$app->get('/flight_average_delay_by_reason', function() use ($app){
+    $app->render('flight_average_delay_by_reason.twig');
+});
+$app->get('/flight_delay_reasons', function() use ($app){
+    $app->render('flight_delay_reasons.twig');
+});
 
 /******************************************* RUN THE APP *******************************************************/
 
