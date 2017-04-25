@@ -1,0 +1,73 @@
+{% extends "_base.twig" %}
+{% block content %}
+    <div class="container">
+        <h1>Airport Top 50 % Delayed</h1>
+            <div style="width:100%;height:600px;">
+            <canvas id="myChart" style="width:100%;height:100%;"></canvas>
+            </div>
+    </div>
+        <script>
+var dataLabels = [];
+var dataValues = [];
+var dataColors = [];
+$.getJSON("/data/airport_top50_percent_delayed.json", function(json) {
+
+    json.sort(function(a,b){
+        return a._1 - b._1;
+    });
+    
+    for(var i=0; i < json.length; i++)
+    {
+        if(json[i]._1.localeCompare("NA") != 0 && json[i]._1.localeCompare("" !=0))
+        {
+            console.log(json[i]._1);
+            dataLabels.push(json[i]._1);
+            dataValues.push(json[i]._2);
+            dataColors.push(getRandColor());
+        }
+    }
+    
+    var chartOptions = {
+        // Boolean - whether or not the chart should be responsive and resize when the browser does.
+        responsive: true,
+        // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+        maintainAspectRatio: false,
+        type: 'line',
+        data: {
+            labels: dataLabels,
+            datasets: [{
+                label: '# late',
+                data: dataValues,
+                borderWidth: 4,
+                fill:true,
+                pointRadius: 4,
+                pointHoverRadius: 10,
+                pointBorderColor: 'rgba(0,0,0,1)',
+                pointBackgroundColor: 'rgba(0,0,0,.5)',
+                borderColor: 'rgba(183, 105, 92, 1)',
+                backgroundColor:'rgba(183, 105, 92, .2)',
+            }],
+        },
+        options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+    };
+        var ctx = $("#myChart");
+        var myChart = new Chart(ctx, chartOptions);
+
+});
+
+function getRandColor(){
+    var rgb = [Math.random() * 256, Math.random() * 256, Math.random() * 256];
+    var mixedrgb = [rgb[0], rgb[1], rgb[2]].map(function(x){ return Math.round(x/2.0)})
+    return 'rgba(' + mixedrgb.join(",") + ',.5)';
+}
+</script>
+
+{% endblock %}

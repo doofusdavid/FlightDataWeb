@@ -79,6 +79,30 @@ $app->get('/flight_average_delay_by_reason', function() use ($app){
 $app->get('/flight_delay_reasons', function() use ($app){
     $app->render('flight_delay_reasons.twig');
 });
+$app->get('/airport_average_delay', function() use ($app){
+    $app->render('airport_average_delay.twig');
+});
+$app->get('/airport_bottom50_count_delayed', function() use ($app){
+    $app->render('airport_bottom50_count_delayed.twig');
+});
+$app->get('/airport_top50_count_delayed', function() use ($app){
+    $app->render('airport_top50_count_delayed.twig');
+});
+$app->get('/airport_top50_percent_delayed', function() use ($app){
+    $app->render('airport_top50_percent_delayed.twig');
+});
+$app->get('/dst_average_delay_per_year', function() use ($app){
+    $app->render('dst_average_delay_per_year.twig');
+});
+$app->get('/dst_percent_delay_per_year', function() use ($app){
+    $app->render('dst_percent_delay_per_year.twig');
+});
+$app->get('/tail_number_top50_average_delay', function() use ($app){
+    $app->render('tail_number_top50_average_delay.twig');
+});
+$app->get('/tail_number_top50_percent', function() use ($app){
+    $app->render('tail_number_top50_percent.twig');
+});
 
 /******************************************* RUN THE APP *******************************************************/
 
