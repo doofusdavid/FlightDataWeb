@@ -15,7 +15,7 @@ $.getJSON("/data/flight_delay_per_number_of_flights.json", function(json) {
     for(var i=0; i < json.length; i++)
     {
         dataLabels.push(json[i]._1);
-        dataValues.push(json[i]._2._2/json[i]._2._1 * 100);
+        dataValues.push((json[i]._2._2/json[i]._2._1 * 100).toFixed(2));
         dataColors.push(getRandColor());
     }
     
