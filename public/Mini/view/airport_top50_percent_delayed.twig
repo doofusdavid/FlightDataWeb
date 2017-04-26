@@ -1,7 +1,7 @@
 {% extends "_base.twig" %}
 {% block content %}
     <div class="container">
-        <h1>Airport Top 50 % Delayed</h1>
+        <h1>Airport Top 50 % of Flights Delayed</h1>
             <div style="width:100%;height:600px;">
             <canvas id="myChart" style="width:100%;height:100%;"></canvas>
             </div>
@@ -13,18 +13,14 @@ var dataColors = [];
 $.getJSON("/data/airport_top50_percent_delayed.json", function(json) {
 
     json.sort(function(a,b){
-        return a._1 - b._1;
+        return a._2 - b._2;
     });
     
     for(var i=0; i < json.length; i++)
     {
-        if(json[i]._1.localeCompare("NA") != 0 && json[i]._1.localeCompare("" !=0))
-        {
-            console.log(json[i]._1);
-            dataLabels.push(json[i]._1);
-            dataValues.push(json[i]._2);
-            dataColors.push(getRandColor());
-        }
+        dataLabels.push(json[i]._1);
+        dataValues.push(json[i]._2);
+        dataColors.push(getRandColor());
     }
     
     var chartOptions = {
@@ -32,11 +28,11 @@ $.getJSON("/data/airport_top50_percent_delayed.json", function(json) {
         responsive: true,
         // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
         maintainAspectRatio: false,
-        type: 'line',
+        type: 'bar',
         data: {
             labels: dataLabels,
             datasets: [{
-                label: '# late',
+                label: '% late',
                 data: dataValues,
                 borderWidth: 4,
                 fill:true,
@@ -44,7 +40,7 @@ $.getJSON("/data/airport_top50_percent_delayed.json", function(json) {
                 pointHoverRadius: 10,
                 pointBorderColor: 'rgba(0,0,0,1)',
                 pointBackgroundColor: 'rgba(0,0,0,.5)',
-                borderColor: 'rgba(183, 105, 92, 1)',
+                borderColor: dataColors,
                 backgroundColor:'rgba(183, 105, 92, .2)',
             }],
         },

@@ -1,7 +1,7 @@
 {% extends "_base.twig" %}
 {% block content %}
     <div class="container">
-        <h1>Flight Average Delay by Reason</h1>
+        <h1>Aggregate Flight Cancellation Counts</h1>
             <div style="width:100%;height:600px;">
             <canvas id="myChart" style="width:100%;height:100%;"></canvas>
             </div>
@@ -10,7 +10,7 @@
 var dataLabels = [];
 var dataValues = [];
 var dataColors = [];
-$.getJSON("/data/flight_average_delay_by_reason.json", function(json) {
+$.getJSON("/data/aggregate_flight_cancellation_counts.json", function(json) {
 
     json.sort(function(a,b){
         return a._1 > b._1;
@@ -18,11 +18,11 @@ $.getJSON("/data/flight_average_delay_by_reason.json", function(json) {
     
     for(var i=0; i < json.length; i++)
     {
-        if(json[i]._1.localeCompare("NA") != 0 && json[i]._1.localeCompare("" !=0))
+        if(json[i]._1.localeCompare("All Flights") != 0 && json[i]._1.localeCompare("" !=0))
         {
             console.log(json[i]._1);
             dataLabels.push(json[i]._1);
-            dataValues.push((json[i]._2._1/json[i]._2._2 * 100).toFixed(2));
+            dataValues.push(json[i]._2);
             dataColors.push(getRandColor());
         }
     }
@@ -32,20 +32,21 @@ $.getJSON("/data/flight_average_delay_by_reason.json", function(json) {
         responsive: true,
         // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
         maintainAspectRatio: false,
-        type: 'line',
+        type: 'bar',
         data: {
             labels: dataLabels,
             datasets: [{
-                label: 'Average Delay',
+                label: 'Cancellation Count',
                 data: dataValues,
                 borderWidth: 4,
                 fill:true,
+                fillColor:dataColors,
                 pointRadius: 4,
                 pointHoverRadius: 10,
                 pointBorderColor: 'rgba(0,0,0,1)',
                 pointBackgroundColor: 'rgba(0,0,0,.5)',
-                borderColor: 'rgba(183, 105, 92, 1)',
-                backgroundColor:'rgba(183, 105, 92, .2)',
+                borderColor: dataColors,
+                backgroundColor:dataColors,
             }],
         },
         options: {

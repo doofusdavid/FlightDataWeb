@@ -18,13 +18,10 @@ $.getJSON("/data/dst_average_delay_per_year.json", function(json) {
     
     for(var i=0; i < json.length; i++)
     {
-        if(json[i]._1.localeCompare("NA") != 0 && json[i]._1.localeCompare("" !=0))
-        {
-            console.log(json[i]._1);
-            dataLabels.push(json[i]._1);
-            dataValues.push(json[i]._2);
-            dataColors.push(getRandColor());
-        }
+        console.log(json[i]._1);
+        dataLabels.push(json[i]._1);
+        dataValues.push(json[i]._2);
+        dataColors.push(getRandColor());
     }
     
     var chartOptions = {
@@ -36,7 +33,7 @@ $.getJSON("/data/dst_average_delay_per_year.json", function(json) {
         data: {
             labels: dataLabels,
             datasets: [{
-                label: '# late',
+                label: 'Average Delay',
                 data: dataValues,
                 borderWidth: 4,
                 fill:true,

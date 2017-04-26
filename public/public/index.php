@@ -103,6 +103,18 @@ $app->get('/tail_number_top50_average_delay', function() use ($app){
 $app->get('/tail_number_top50_percent', function() use ($app){
     $app->render('tail_number_top50_percent.twig');
 });
+$app->get('/aggregate_flight_cancellation_counts', function() use ($app){
+    $app->render('aggregate_flight_cancellation_counts.twig');
+});
+$app->get('/cancelled_flights_vs_active_airlines', function() use ($app){
+    $app->render('cancelled_flights_vs_active_airlines.twig');
+});
+$app->get('/reasons_for_cancellation', function() use ($app){
+    $app->render('reasons_for_cancellation.twig');
+});
+$app->get('/distance_impact', function() use ($app){
+    $app->render('distance_impact.twig');
+});
 
 /******************************************* RUN THE APP *******************************************************/
 
