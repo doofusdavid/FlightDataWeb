@@ -13,7 +13,7 @@ var dataColors = [];
 $.getJSON("/data/airport_average_delay.json", function(json) {
 
     json.sort(function(a,b){
-        return a._1 - b._1;
+        return a._1 > b._1;
     });
     
     for(var i=0; i < json.length; i++)
@@ -32,20 +32,21 @@ $.getJSON("/data/airport_average_delay.json", function(json) {
         responsive: true,
         // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
         maintainAspectRatio: false,
-        type: 'line',
+        type: 'bar',
         data: {
             labels: dataLabels,
             datasets: [{
-                label: '# late',
+                label: 'Average Delay',
                 data: dataValues,
                 borderWidth: 4,
                 fill:true,
+                fillColor:dataColors,
                 pointRadius: 4,
                 pointHoverRadius: 10,
                 pointBorderColor: 'rgba(0,0,0,1)',
                 pointBackgroundColor: 'rgba(0,0,0,.5)',
-                borderColor: 'rgba(183, 105, 92, 1)',
-                backgroundColor:'rgba(183, 105, 92, .2)',
+                borderColor: dataColors,
+                backgroundColor:dataColors,
             }],
         },
         options: {

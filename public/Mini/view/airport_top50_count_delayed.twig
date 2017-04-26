@@ -13,7 +13,7 @@ var dataColors = [];
 $.getJSON("/data/airport_top50_count_delayed.json", function(json) {
 
     json.sort(function(a,b){
-        return a._1 - b._1;
+        return a._2 - b._2;
     });
     
     for(var i=0; i < json.length; i++)
@@ -32,11 +32,11 @@ $.getJSON("/data/airport_top50_count_delayed.json", function(json) {
         responsive: true,
         // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
         maintainAspectRatio: false,
-        type: 'line',
+        type: 'bar',
         data: {
             labels: dataLabels,
             datasets: [{
-                label: '# late',
+                label: 'Number of Delays',
                 data: dataValues,
                 borderWidth: 4,
                 fill:true,
@@ -44,7 +44,7 @@ $.getJSON("/data/airport_top50_count_delayed.json", function(json) {
                 pointHoverRadius: 10,
                 pointBorderColor: 'rgba(0,0,0,1)',
                 pointBackgroundColor: 'rgba(0,0,0,.5)',
-                borderColor: 'rgba(183, 105, 92, 1)',
+                borderColor: dataColors,
                 backgroundColor:'rgba(183, 105, 92, .2)',
             }],
         },

@@ -10,10 +10,10 @@
 var dataLabels = [];
 var dataValues = [];
 var dataColors = [];
-$.getJSON("/data/flight_delay_reasons.json", function(json) {
+$.getJSON("/data/flight_delays_by_reason.json", function(json) {
 
     json.sort(function(a,b){
-        return a._1 - b._1;
+        return a._1 > b._1;
     });
     
     for(var i=0; i < json.length; i++)

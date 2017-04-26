@@ -1,7 +1,7 @@
 {% extends "_base.twig" %}
 {% block content %}
     <div class="container">
-        <h1>Flight Delay Per Day of Month</h1>
+        <h1>Flight Average Delay by Reason</h1>
             <div style="width:100%;height:600px;">
             <canvas id="myChart" style="width:100%;height:100%;"></canvas>
             </div>
@@ -13,7 +13,7 @@ var dataColors = [];
 $.getJSON("/data/flight_average_delay_by_reason.json", function(json) {
 
     json.sort(function(a,b){
-        return a._1 - b._1;
+        return a._1 > b._1;
     });
     
     for(var i=0; i < json.length; i++)
@@ -22,7 +22,7 @@ $.getJSON("/data/flight_average_delay_by_reason.json", function(json) {
         {
             console.log(json[i]._1);
             dataLabels.push(json[i]._1);
-            dataValues.push(json[i]._2);
+            dataValues.push((json[i]._2._1/json[i]._2._2 * 100).toFixed(2));
             dataColors.push(getRandColor());
         }
     }
